@@ -1,0 +1,42 @@
+
+<nav class="flex justify-end gap-4 mr-8 mt-4">
+    <button (click)="subIsOpen.set(true)" class="hover:text-indigo-600 transition">Inscription</button>
+</nav>
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" (ngSubmit)="connection()" [formGroup]="form">
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+          <div class="mt-2">
+            <input formControlName="email" id="email" name="email" type="email" 
+            class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+            [class.invalid]="form.controls.email.invalid && form.controls.email.touched"
+            >
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
+          </div>
+          <div class="mt-2">
+            <input formControlName="password" id="password" name="password" type="password" 
+            [class.invalid]="form.controls.password.invalid && form.controls.password.touched"
+            class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 border-gray-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit"
+          [disabled]="form.controls.password.invalid"
+           class="w-full relative py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">Connexion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  @if(subIsOpen()) {
+    <app-subscription (close)="subIsOpen.set(false)" />
+  }
+  

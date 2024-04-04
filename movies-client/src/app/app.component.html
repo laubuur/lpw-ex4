@@ -1,0 +1,10 @@
+@if(isConnected()) {
+    <nav class="flex justify-end gap-4 mr-8 mt-4">
+        <button (click)="true" class="hover:text-indigo-600 transition" routerLink="/movies/new">Ajouter un film</button>
+        <button (click)="authService.disconnect()" class="hover:text-indigo-600 transition">Déconnexion</button>
+    </nav>
+    <router-outlet /> 
+} @else {
+    <app-login />
+}
+<lib-toast />

@@ -1,0 +1,62 @@
+<div class="w-full h-screen bg-black bg-opacity-10 flex justify-center items-center absolute top-0 left-0">
+
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 bg-white rounded-xl shadow-xl w-[800px]">
+        <div class="flex justify-between">
+            <div class="mb-4 font-bold text-xl">Inscription</div>
+            <button (click)="emitClose()"><i class="fa-solid fa-xmark fa-xl"></i></button>
+            
+        </div>
+        
+        <form class="space-y-6" (ngSubmit)="subscription()" [formGroup]="form">
+            <div>
+                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
+                <div class="mt-2">
+                <input formControlName="name" id="name" name="name" type="name" 
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                [class.invalid]="form.controls.name.invalid && form.controls.name.touched"
+                >
+                </div>
+            </div>
+
+            <div>
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+            <div class="mt-2">
+                <input formControlName="email" id="email" name="email" type="email" 
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                [class.invalid]="form.controls.email.invalid && form.controls.email.touched"
+                >
+            </div>
+            </div>
+    
+            <div>
+            <div class="flex items-center justify-between">
+                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
+            </div>
+            <div class="mt-2">
+                <input formControlName="password" id="password" name="password" type="password" 
+                [class.invalid]="form.controls.password.invalid && form.controls.password.touched"
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 border-gray-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+            </div>
+            </div>
+    
+            <div>
+                <div class="flex items-center justify-between">
+                <label for="password2" class="block text-sm font-medium leading-6 text-gray-900">Repetez le mot de passe</label>
+                </div>
+                <div class="mt-2">
+                <input formControlName="password2" id="password2" name="password2" type="password2" 
+                [class.invalid]="form.controls.password2.invalid && form.controls.password2.touched"
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 border-gray-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+                </div>
+            </div>
+
+            <div>
+            <button type="submit"
+            [disabled]="form.invalid"
+            class="w-full relative py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">Inscription</button>
+            </div>
+        </form>
+        
+    </div>
+
+</div>

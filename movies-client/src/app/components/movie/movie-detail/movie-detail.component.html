@@ -1,0 +1,89 @@
+<div class="w-full h-screen bg-black bg-opacity-10 flex justify-center items-center absolute top-0 left-0">
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8 bg-white rounded-xl shadow-xl w-[800px]">
+        <div class="flex justify-between">
+            <div class="mb-4 font-bold text-xl">Film</div>
+            <button routerLink="/movie"><i class="fa-solid fa-xmark fa-xl"></i></button>
+        </div>
+        <form class="space-y-6"  [formGroup]="form">
+            <div>
+                <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Titre</label>
+                <div class="mt-2">
+                <input formControlName="title" id="title" name="title" type="text" 
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:text-gray-400"
+                [class.invalid]="form.controls.title.invalid && form.controls.title.touched"
+                >
+                @if(form.controls.title.invalid && form.controls.title.touched) {
+                    <span class="text-sm text-red-600">Doit être remplis</span>
+                }
+               
+                </div>
+                
+            </div>
+
+            <div>
+            <label for="director" class="block text-sm font-medium leading-6 text-gray-900">Réalisateur</label>
+            <div class="mt-2">
+                <input formControlName="director" id="director" name="director" type="text" 
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:text-gray-400"
+                [class.invalid]="form.controls.director.invalid && form.controls.director.touched"
+                >
+                @if(form.controls.director.invalid && form.controls.director.touched) {
+                    <span class="text-sm text-red-600">Doit être remplis</span>
+                }
+            </div>
+            </div>
+    
+            <div>
+            <div class="flex items-center justify-between">
+                <label for="year" class="block text-sm font-medium leading-6 text-gray-900">Année</label>
+            </div>
+            <div class="mt-2">
+                <input formControlName="year" id="year" name="year" type="number" 
+                [class.invalid]="form.controls.year.invalid && form.controls.year.touched"
+                class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 border-gray-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:text-gray-400">
+                @if(form.controls.year.invalid && form.controls.year.touched) {
+                    @if (form.controls.year.errors?.['min'] && form.controls.year.errors) {
+                        <div class="text-sm text-red-600">L'année doit être supérieure à 1895</div>
+                    }@else {
+                        <span class="text-sm text-red-600">Doit être remplie</span>
+                    }   
+                }
+            </div>
+            </div>
+    
+            <div>
+                <div class="flex items-center justify-between">
+                <label for="synopsis" class="block text-sm font-medium leading-6 text-gray-900">Synopsis</label>
+                </div>
+                <div class="mt-2"> 
+                    <textarea formControlName="synopsis" id="synopsis" name="synopsis" 
+                    [class.invalid]="form.controls.synopsis.invalid && form.controls.synopsis.touched"
+                     class="w-full flex-none rounded-lg appearance-none border transition ease-in duration-200 border-gray-200 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:text-gray-400"></textarea>
+                     @if(form.controls.synopsis.invalid && form.controls.synopsis.touched) {
+                        @if (form.controls.synopsis.errors?.['minlength'] && form.controls.synopsis.errors) {
+                            <div class="text-sm text-red-600">Doit faire au moins 5 caractères</div>
+                        }@else {
+                            <span class="text-sm text-red-600">Doit être remplis</span>
+                        }
+                     }
+                    </div>
+            </div>
+
+            <div>
+                @if(!form.disabled) {
+                    <button type="submit"
+                    (click)="save()"
+                    [disabled]="form.invalid"
+                    class="w-full relative py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">Enregistrer</button>
+                   
+                }@else {
+                    <button type="submit"
+                    (click)="form.enable()"
+                    class="w-full relative py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">Editer</button>
+                   
+                }
+          </div> 
+        </form>
+    </div>
+</div>
+

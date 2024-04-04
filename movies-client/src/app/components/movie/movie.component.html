@@ -1,0 +1,54 @@
+<div class="flex justify-center mt-16">
+    <table class="my-0 align-middle text-dark divide-y divide-gray-200 table-auto">
+        <thead class="align-bottom bg-gray-50">
+            <tr class="font-semibold text-[0.95rem] text-gray-500 text-left uppercase">
+                <th class="min-w-[200px] ">Titre</th>
+                <th class="min-w-[200px]">Année</th>
+                <th class="min-w-[200px]">Réalisateur</th>
+                <th class="min-w-[200px]">Synopsis</th>
+                <th></th>
+            </tr>
+        </thead>
+       <tbody>
+        @for(movie of (movies$ | async)?.data; track movie.id) {
+            <tr class="border-b border-dashed last:border-b-0">
+                <td>{{movie.title}}</td>
+                <td>{{movie.year}}</td>
+                <td>{{movie.director}}</td>
+                <td>{{movie.synopsis}}</td>
+                <td class="flex gap-2">
+                    <button [routerLink]="['/movies/'+movie.id]" class="relative text-sm py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">
+                        Editer
+                    </button>
+                    <button
+                    (click)="removeId = movie.id"
+                     class=" relative text-sm py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">
+                        Supprimer
+                    </button>
+                </td>
+            </tr>
+        }
+       </tbody>
+    </table>
+</div>
+
+<router-outlet />
+
+@if(removeId) {
+    <div class="absolute top-0 left-0 flex justify-center items-center w-full h-screen bg-black bg-opacity-10">
+        <div class="rounded-md bg-white p-8">
+            <div class="my-4">
+                Etes vous sur de vouloir supprimer cet élément ? 
+            </div>
+            
+            <div class="flex gap-4">
+                <button
+                (click)="removeId = undefined"
+                class="hover:text-indigo-500 transition-all">Annuler</button>
+                <button 
+                (click)="remove()"
+                class="w-full relative py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg disabled:opacity-30">Oui</button>
+            </div>
+        </div>
+    </div>
+}

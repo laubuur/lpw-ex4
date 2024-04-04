@@ -1,0 +1,12 @@
+<div class="toast-section">
+    @for(toast of service.toasts; track toast) {
+        <div class="toast {{toast.severity}} flex">
+            <div class="flex-1">
+                {{toast.message}}
+            </div>
+            <div class="link">
+                <div (click)="service.closeToast(toast.id!)" class="link"><i class="fa-solid fa-xmark fa-lg"></i></div>
+            </div>
+        </div>
+    }
+</div>
